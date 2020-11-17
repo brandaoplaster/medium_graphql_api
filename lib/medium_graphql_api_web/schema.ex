@@ -26,5 +26,11 @@ defmodule MediumGraphqlApiWeb.Schema do
       arg(:input, non_null(:session_input_type))
       resolve(&Resolvers.SessionResolver.login_user/3)
     end
+
+    @desc "Create a post"
+    field :create_post, type: :post_type do
+      arg(:input, non_null(:post_input_type))
+      resolve(&Resolvers.PostResolver.create_post/3)
+    end
   end
 end
