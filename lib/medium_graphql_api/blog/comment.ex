@@ -1,11 +1,13 @@
 defmodule MediumGraphqlApi.Blog.Comment do
   use Ecto.Schema
   import Ecto.Changeset
+  alias MediumGraphqlApi.Accounts.User
+  alias MediumGraphqlApi.Blog.Post
 
   schema "comments" do
-    field :context, :string
-    field :user_id, :id
-    field :post_id, :id
+    field(:content, :string)
+    belongs_to(:user, User)
+    belongs_to(:post, Post)
 
     timestamps()
   end
@@ -13,7 +15,7 @@ defmodule MediumGraphqlApi.Blog.Comment do
   @doc false
   def changeset(comment, attrs) do
     comment
-    |> cast(attrs, [:context])
-    |> validate_required([:context])
+    |> cast(attrs, [:content, :user_id, :post_id])
+    |> validate_required([:content, :user_id, :post_id])
   end
 end

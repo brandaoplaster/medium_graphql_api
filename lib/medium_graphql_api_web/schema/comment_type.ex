@@ -9,7 +9,7 @@ defmodule MediumGraphqlApiWeb.Schema.Types.CommentType do
     field(:post, :post_type, resolve: assoc(:post))
   end
 
-  input_object :comment_type do
+  input_object :comment_input_type do
     field(:content, non_null(:string))
     field(:post_id, non_null(:id))
   end
